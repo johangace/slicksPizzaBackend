@@ -1,29 +1,29 @@
-import React from 'react';
-import { MdLocalPizza  } from 'react-icons/md'
-import PriceInput from '../components/PriceInput'
+import { MdLocalPizza as icon } from 'react-icons/md';
+import PriceInput from '../components/PriceInput';
 
 export default {
-  //computer name
+  // Computer Name
   name: 'pizza',
+  // visible title
   title: 'Pizzas',
   type: 'document',
-  icon: () => <MdLocalPizza/>,
-
+  icon,
   fields: [
     {
       name: 'name',
       title: 'Pizza Name',
       type: 'string',
-      description: 'Name of pizza',
+      description: 'Name of the pizza',
     },
-
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'name', maxLength: 100 },
+      options: {
+        source: 'name',
+        maxLength: 100,
+      },
     },
-
     {
       name: 'image',
       title: 'Image',
@@ -32,16 +32,14 @@ export default {
         hotspot: true,
       },
     },
-
     {
-     inputComponent : PriceInput,
-     name: 'price',
-     title: 'Price',
-     type: 'number',
-     description: 'Price of the pizza in cents',
-     validation: (Rule) => Rule.min(1000).max(50000),
-   },
-
+      name: 'price',
+      title: 'Price',
+      type: 'number',
+      description: 'Price of the pizza in cents',
+      validation: Rule => Rule.min(1000),
+      inputComponent: PriceInput,
+    },
     {
       name: 'toppings',
       title: 'Toppings',
@@ -49,7 +47,6 @@ export default {
       of: [{ type: 'reference', to: [{ type: 'topping' }] }],
     },
   ],
-
   preview: {
     select: {
       title: 'name',
@@ -59,15 +56,15 @@ export default {
       topping2: 'toppings.2.name',
       topping3: 'toppings.3.name',
     },
-
     prepare: ({ title, media, ...toppings }) => {
-      //filters undefined out
-      const tops = Object.values(toppings).filter(Boolean)
+      // 1. Filter undefined toppings out
+      const tops = Object.values(toppings).filter(Boolean);
+      // 2. return the preview object for the pizza
       return {
         title,
         media,
         subtitle: tops.join(', '),
-      }
+      };
     },
   },
-}
+};
