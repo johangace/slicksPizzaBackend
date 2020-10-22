@@ -1,13 +1,12 @@
 import React from 'react';
-import { MdPerson  as icon } from 'react-icons/md'
-
+import { MdPerson as icon } from 'react-icons/md';
 
 export default {
-  //computer name
+  // computer name
   name: 'person',
   title: 'Slicemasters',
   type: 'document',
- icon,
+  icon,
 
   fields: [
     {
@@ -25,11 +24,11 @@ export default {
     },
 
     {
-        name: 'description',
-        title: 'Description',
-        type: 'text',
-        description: 'Tell us about person'
-      },
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      description: 'Tell us about person',
+    },
 
     {
       name: 'image',
@@ -39,7 +38,5 @@ export default {
         hotspot: true,
       },
     },
-
   ],
-  
-}
+};
